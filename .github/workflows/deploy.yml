@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/xpenz_website:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: self-hosted
+    steps:
+      - name: Stop and remove old container
+        run: |
+          docker stop xpenz_website || true
+          docker rm xpenz_website || true
+          
+      - name: Pull latest image
+        env:
+          DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/xpenz_website:latest
+        run: |
+          docker pull $DOCKER_IMAGE
+          
+      - name: Run new container
+        env:
+          DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/xpenz_website:latest
+        run: |
+          docker run -d -p 80:80 --name xpenz_website --restart unless-stopped $DOCKER_IMAGE
