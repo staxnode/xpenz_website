@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xpenz – Smart Personal Finance & Expense Tracker</title>
     <meta name="description" content="Xpenz is a modern personal finance and expense tracking application designed to help individuals manage their money effortlessly.">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mockup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -14,14 +16,18 @@
     <header>
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <i class="fa-solid fa-wallet text-gradient"></i>
-                Xpenz<span>.</span>
+                <img src="assets/images/logo.svg" alt="Xpenz Logo" style="height: 40px; border-radius: 8px;">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about-app.html">About App</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="#download" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Get the App</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav_home">Home</a></li>
+                <li><a href="about-app.html" data-i18n="nav_about_app">About App</a></li>
+                <li><a href="about-us.html" data-i18n="nav_about_us">About Us</a></li>
+                <li><a href="#download" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;" data-i18n="nav_get_app">Get the App</a></li>
+                <li>
+                    <button id="lang-toggle" class="btn-outline" style="padding: 0.3rem 0.8rem; font-size: 0.85rem; border-radius: 20px; display: flex; align-items: center; gap: 5px; cursor: pointer; background: transparent; border: 2px solid var(--glass-border); color: var(--text-main);">
+                        <i class="fa-solid fa-language"></i> <span id="lang-toggle-text">EN</span>
+                    </button>
+                </li>
             </ul>
             <button class="mobile-menu-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -36,15 +42,85 @@
         
         <div class="container hero-grid">
             <div class="hero-content fade-in-up">
-                <h1>Master Your <span class="text-gradient">Money</span> effortlessly.</h1>
-                <p>Record daily income and expenses, monitor budgets, analyze spending habits, and gain valuable financial insights—all from a simple and intuitive interface.</p>
+                <h1 data-i18n="hero_title" style="font-size: clamp(2.5rem, 4.5vw, 3.8rem); line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em;">Expense Tracker. Track smart. Spend better. Save more.</h1>
+                
+                <div class="hero-feature-cards">
+                    <div class="hero-feature-card">
+                        <div class="icon"><i class="fa-solid fa-sliders"></i></div>
+                        <p data-i18n="tagline_1">Configure & track budgets by category or overall, and stay in control</p>
+                    </div>
+                    <div class="hero-feature-card">
+                        <div class="icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                        <p data-i18n="tagline_2">Record your income & expenses easily. Stay on top of your earnings</p>
+                    </div>
+                    <div class="hero-feature-card">
+                        <div class="icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <p data-i18n="tagline_3">Keep track of payments, loans, and receivables</p>
+                    </div>
+                    <div class="hero-feature-card">
+                        <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <p data-i18n="tagline_4">Visual reports to help you understand your finances</p>
+                    </div>
+                </div>
+                
                 <div class="hero-buttons">
-                    <a href="#features" class="btn btn-primary">Explore Features <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
-                    <a href="about-app.html" class="btn btn-outline">Learn More</a>
+                    <a href="#features" class="btn btn-primary"><span data-i18n="btn_explore">Explore Features</span> <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+                    <a href="about-app.html" class="btn btn-outline" data-i18n="btn_learn">Learn More</a>
                 </div>
             </div>
             <div class="hero-image-wrapper fade-in-up" style="transition-delay: 0.2s;">
-                <img src="assets/images/hero-mockup.png" alt="Xpenz App Interface" class="hero-mockup">
+                <div class="phone-frame">
+                    <img src="assets/images/pocket-tracker.png" alt="PocketTracker Interface" class="phone-screen">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights Sections -->
+    <section class="highlights-section" style="padding: 4rem 0;">
+        <div class="container">
+            <!-- Highlight 1: Budget Alerts (Wide Image -> Text Up) -->
+            <div class="feature-highlight layout-stacked fade-in-up" style="margin-bottom: 2rem;">
+                <div class="highlight-content text-center" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+                    <h2 data-i18n="hl1_title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Budget & Expense Alerts</h2>
+                    <p data-i18n="hl1_desc" style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8;">Get instantly notified when you exceed your daily limit or overspend your monthly budget. Stay on track easily.</p>
+                </div>
+                <div class="highlight-image wide-image">
+                    <img src="assets/images/sc1.png" alt="Budget Expense Alerts" class="feature-screenshot" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+
+            <!-- Highlight 2: Easy Sign In (Tall Image -> Text Side) -->
+            <div class="feature-highlight layout-side fade-in-up" style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div class="highlight-content">
+                    <h2 data-i18n="hl2_title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Easy Sign In</h2>
+                    <p data-i18n="hl2_desc" style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8;">Get started instantly with secure Google and Facebook sign-in. Your data is synced automatically.</p>
+                </div>
+                <div class="highlight-image" style="display: flex; justify-content: center;">
+                    <img src="assets/images/sc2.png" alt="Easy Sign In" class="feature-screenshot shadow-img" style="max-width: 400px; width: 100%; height: auto; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+
+            <!-- Highlight 3: Smart Budgeting (Very Wide Image -> Text Up) -->
+            <div class="feature-highlight layout-stacked fade-in-up" style="margin-bottom: 2rem;">
+                <div class="highlight-content text-center" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+                    <h2 data-i18n="hl3_title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Smart Budgeting</h2>
+                    <p data-i18n="hl3_desc" style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8;">Visualize your spending with beautiful circular charts. See exactly what you have left and when you're nearing your limit.</p>
+                </div>
+                <div class="highlight-image wide-image">
+                    <img src="assets/images/sc3.png" alt="Smart Budgeting" class="feature-screenshot" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+                </div>
+            </div>
+
+            <!-- Highlight 4: Contact & Due Management (Medium Wide Image -> Text Side) -->
+            <div class="feature-highlight layout-side reverse fade-in-up" style="margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div class="highlight-image" style="order: 1; display: flex; justify-content: center;">
+                    <img src="assets/images/sc4.png" alt="Contact and Due Management" class="feature-screenshot shadow-img" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+                </div>
+                <div class="highlight-content" style="order: 2;">
+                    <h2 data-i18n="hl4_title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Contact & Due Management</h2>
+                    <p data-i18n="hl4_desc" style="font-size: 1.125rem; color: var(--text-muted); line-height: 1.8;">Easily track what you owe and what others owe you. Keep a clear ledger of all payables and receivables in one place.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -53,31 +129,31 @@
     <section id="features" class="section">
         <div class="container">
             <div class="section-header fade-in-up">
-                <h2>Smart Features for <span class="text-gradient">Smart Finances</span></h2>
-                <p>Everything you need to stay financially organized and make informed decisions.</p>
+                <h2 data-i18n="features_title">Smart Features for <span class="text-gradient">Smart Finances</span></h2>
+                <p data-i18n="features_desc">Everything you need to stay financially organized and make informed decisions.</p>
             </div>
             
             <div class="features-grid">
-                <div class="feature-card-small fade-in-up"><i class="fa-solid fa-globe"></i><h3>Registration - from any country</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-brands fa-google"></i><h3>Login - google/facebook account</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-gear"></i><h3>Initial Configuration - of account</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-chart-line"></i><h3>Dashboard</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-money-bill-transfer"></i><h3>Income/Expense/Due(Payable/receivable) Entry</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-layer-group"></i><h3>Category & Accounts Management</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-magnifying-glass"></i><h3>Search</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-piggy-bank"></i><h3>Budget Configuration</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-credit-card"></i><h3>Purchase Subscription</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-sliders"></i><h3>Update Configuration</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-shield-halved"></i><h3>Privacy & Term</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-circle-question"></i><h3>FAQ</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-file-export"></i><h3>Export Report</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-file-invoice-dollar"></i><h3>Due Management</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-address-book"></i><h3>Contact Management</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-file-lines"></i><h3>Report : Summary</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-chart-bar"></i><h3>Report : Statistics</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-lightbulb"></i><h3>Report : Insights</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-arrows-rotate"></i><h3>Recurring Expense</h3></div>
-                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-bell"></i><h3>Reminder Control</h3></div>
+                <div class="feature-card-small fade-in-up"><i class="fa-solid fa-globe"></i><h3 data-i18n="feature_reg">Registration - from any country</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-brands fa-google"></i><h3 data-i18n="feature_login">Login - google/facebook account</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-gear"></i><h3 data-i18n="feature_config">Initial Configuration - of account</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-chart-line"></i><h3 data-i18n="feature_dash">Dashboard</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-money-bill-transfer"></i><h3 data-i18n="feature_entry">Income/Expense/Due Entry</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-layer-group"></i><h3 data-i18n="feature_cat">Category & Accounts Management</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-magnifying-glass"></i><h3 data-i18n="feature_search">Search</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-piggy-bank"></i><h3 data-i18n="feature_budget">Budget Configuration</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-credit-card"></i><h3 data-i18n="feature_sub">Purchase Subscription</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-sliders"></i><h3 data-i18n="feature_update">Update Configuration</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-shield-halved"></i><h3 data-i18n="feature_privacy">Privacy & Term</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-circle-question"></i><h3 data-i18n="feature_faq">FAQ</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-file-export"></i><h3 data-i18n="feature_export">Export Report</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-file-invoice-dollar"></i><h3 data-i18n="feature_due">Due Management</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-address-book"></i><h3 data-i18n="feature_contact">Contact Management</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-file-lines"></i><h3 data-i18n="feature_rep_sum">Report : Summary</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.2s;"><i class="fa-solid fa-chart-bar"></i><h3 data-i18n="feature_rep_stat">Report : Statistics</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.05s;"><i class="fa-solid fa-lightbulb"></i><h3 data-i18n="feature_rep_ins">Report : Insights</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.1s;"><i class="fa-solid fa-arrows-rotate"></i><h3 data-i18n="feature_recur">Recurring Expense</h3></div>
+                <div class="feature-card-small fade-in-up" style="transition-delay: 0.15s;"><i class="fa-solid fa-bell"></i><h3 data-i18n="feature_remind">Reminder Control</h3></div>
             </div>
         </div>
     </section>
@@ -88,8 +164,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <i class="fa-solid fa-wallet text-gradient"></i>
-                        Xpenz<span>.</span>
+                        <img src="assets/images/logo.svg" alt="Xpenz Logo" style="height: 40px; border-radius: 8px;">
                     </a>
                     <p>Your all-in-one personal financial companion, empowering you to take control of your financial life through simplicity and intelligent insights.</p>
                 </div>
@@ -97,7 +172,7 @@
                 <div class="footer-links">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="about-us.html" data-i18n="nav_about_us">About Us</a></li>
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
@@ -106,7 +181,7 @@
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="about-app.html">Features</a></li>
+                        <li><a href="about-app.html" data-i18n="nav_about_app">Features</a></li>
                         <li><a href="#">Pricing</a></li>
                         <li><a href="about-app.html#premium">Premium</a></li>
                     </ul>
@@ -129,5 +204,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/i18n.js"></script>
 </body>
 </html>
